@@ -60,7 +60,7 @@ Gui, Add, Text,, MinWait:
 Gui, Add, Text,, MaxWait:
 Gui, Add, Edit, r1 w20 vNB ReadOnly
 GuiControl, Move, NB, x10 w300 y80
-Gui, Add, DDL, x40 w60 ym-3 vWorldV, |4_3E|6_3N|0_2|2_6|3_6|4_6|5_6|6_6|BOSS_RUN|5_4_friendly|
+Gui, Add, DDL, x40 w60 ym-3 vWorldV, |4_3E|6_3N|3_2N|5_4|5_4_friendly|5_2E|0_2 
 GuiControl, ChooseString, WorldV, %WorldV%
 ; Gui, Add, Edit, gWorldF r2 limit3 w10 vWorldV -VScroll ym, %World%
 ; GuiControl, Move, WorldV, x37 h17 w15
@@ -72,7 +72,7 @@ Gui, Add, Edit, gIntervalF r2 w15 vIntervalV -VScroll ym, %SortieInterval%
 GuiControl, Move, IntervalV, h17 w70
 Gui, Add, Checkbox, vExpeditionV , Expedition only
 GuiControl, Move, ExpeditionV, x150 y33
-Gui, Add, Checkbox, vcorpsedragoffV , Corpse dragging off
+Gui, Add, Checkbox, vcorpsedragoffV , Corpse dragging off?(4_3E only)
 GuiControl, Move, corpsedragoffV, x150 y58
 ; Gui, Add, Text, vText, #Nodes
 ; GuiControl, Move, Text, x150 y35
@@ -337,6 +337,18 @@ ExpeditionCheck(State := "")
 				ClickS(LoginCollectNoticey,LoginCollectNoticey)
 				loopcount++
 			}
+			;else if tpc = 8
+			;{	
+			;	GuiControl,, NB, Daily Reset
+			;	RFindClick("\pics\daily_reset", "rNoxPlayer mc o60 w30000,50 ")
+			;	loopcount++
+			;}
+			;else if tpc = 9
+			;{	
+			;	GuiControl,, NB, Daily Reset
+			;	RFindClick("\pics\event_notice", "rNoxPlayer mc o60 w30000,50 ")
+			;	loopcount++
+			;}
 			Else
 			{	
 				GuiControl,, NB, Initial Event notice Found
@@ -600,8 +612,12 @@ ReplaceDPS(exhaustedDoll, loadedDoll, resetFilter:=False)
 		RFindClick("FilterYellow", "rNoxPlayer mc o20 w30000,50")
 		RFindClick("FilterReset", "rNoxPlayer mc o20 w30000,50")
 	}
-
 	if %loadedDoll% in %5Star%
+	{
+		RFindClick("Filter", "rNoxPlayer mc o50 w30000,50") ; select filter
+		RFindClick("5STAR", "rNoxPlayer mc o50 w10000,50") ;go to formation 
+	}
+	if %loadedDoll% in %5Star_night%
 	{
 		RFindClick("Filter_Level", "rNoxPlayer mc o50 w30000,50") ; select Sort by	
 		RFindClick("Filter_More", "rNoxPlayer mc o50 w30000,50") ; select More	
@@ -610,10 +626,7 @@ ReplaceDPS(exhaustedDoll, loadedDoll, resetFilter:=False)
 		RFindClick("5STAR", "rNoxPlayer mc o50 w10000,50") ;go to formation 
 	}
 	Else
-	{	
-		RFindClick("Filter_Level", "rNoxPlayer mc o50 w30000,50") ; select Sort by	
-		RFindClick("Filter_More", "rNoxPlayer mc o50 w30000,50") ; select More	
-		RFindClick("Filter_Night Vision", "rNoxPlayer mc o50 w30000,50") ; select Night vision	
+	{
 		RFindClick("Filter", "rNoxPlayer mc o50 w30000,50") ; select filter
 		RFindClick("4STAR", "rNoxPlayer mc o50 w10000,50") ;go to formation 
 	}
@@ -647,6 +660,10 @@ AddToSecondEchelon(doll, slot)
 	if %doll% in %5Star%
 	{
 		RFindClick("5STAR", "rNoxPlayer mc o50 w10000,50") 
+	}
+	if %doll% in %5Star_night%
+	{
+		RFindClick("5STAR", "rNoxPlayer mc o50 w10000,50") ;go to formation 
 	}
 	else
 	{
@@ -1470,7 +1487,8 @@ Initialize()
 	FriendChecker := 1
 	BatteryChecker := 1
 	CombatSimsDataChecker := 1
-	5Star = TYPE97,OTS14,HK416,G41,TYPE95,G11,FAL,WA2000,Zaso,Zas
+	5Star = TYPE97,OTS14,HK416,G41,TYPE95,G11,FAL,WA2000
+	5Star_night = Zaso,Zas
 	4Star = 
 }
 
