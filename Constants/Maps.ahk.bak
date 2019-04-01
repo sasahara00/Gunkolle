@@ -483,24 +483,22 @@ FocusChapter(Chapter)
 		RFindClick("Maps\5_4\5_4MapWait", "rNoxPlayer mc o25 w30000,50 n0")
 		sleep 1000
 		RFindClick("Maps\5_4\TopLeftHeliPort", "rNoxPlayer mc o50 w30000,50 ")  
-		RFindClick("Maps\5_4\SupportEchelon", "rNoxPlayer mc o50 w30000,50 ")
 		Found := FindClick(A_ScriptDir "\pics\Maps\5_4\SupportExit", "rNoxPlayer mc o30 Count1 w1000,50")
 		if(Found >= 1)
 		{
-			GuiControl,, NB, Friends Done for today, select another map.
-			Pause
+			break
 		}
+		RFindClick("Maps\5_4\SupportEchelon", "rNoxPlayer mc o50 w30000,50 ")
 		RFindClick("Maps\5_4\SupportFriend", "rNoxPlayer mc o50 w30000,50 ")
 		RFindClick("Maps\5_4\OK", "rNoxPlayer mc o20 w30000,50")
 		sleep 1500
 		RFindClick("Maps\5_4\BottomLeftHeliPort", "rNoxPlayer mc o50 w30000,50 ")  
-		RFindClick("Maps\5_4\SupportEchelon", "rNoxPlayer mc o50 w30000,50 ")
 		Found := FindClick(A_ScriptDir "\pics\Maps\5_4\SupportExit", "rNoxPlayer mc o30 Count1 w1000,50")
 		if(Found >= 1)
 		{
-			GuiControl,, NB, Friends Done for today, select another map.
-			Pause
+			break
 		}
+		RFindClick("Maps\5_4\SupportEchelon", "rNoxPlayer mc o50 w30000,50 ")
 		RFindClick("Maps\5_4\SupportFriend", "rNoxPlayer mc o50 w30000,50 ")
 		RFindClick("Maps\5_4\OK", "rNoxPlayer mc o20 w30000,50")
 		sleep 1000
